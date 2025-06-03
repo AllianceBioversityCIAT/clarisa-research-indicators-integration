@@ -10,6 +10,7 @@ import { getDataSource } from './db/mysql/orm.config';
 import { dataSourceTarget } from './db/mysql/enum/data-source-target.enum';
 import { ResponseInterceptor } from './domain/shared/Interceptors/response.interceptor';
 import { GlobalExceptions } from './domain/shared/error-management/global.exception';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { GlobalExceptions } from './domain/shared/error-management/global.except
       <DataSourceOptions>getDataSource(dataSourceTarget.STAR, false),
     ),
     StarModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [

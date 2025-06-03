@@ -73,7 +73,7 @@ export class LoggerUtil {
   warn(message: any, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.warn(this.formatMessage(message, additionalParams));
   }
-  debug?(message: any, additionalParams?: LoggerUtilAdditionalDto): void {
+  debug(message: any, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.debug(this.formatMessage(message, additionalParams));
   }
   verbose?(message: any, additionalParams?: LoggerUtilAdditionalDto): void {
