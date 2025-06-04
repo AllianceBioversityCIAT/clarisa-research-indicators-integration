@@ -1,5 +1,4 @@
 import { ExecutionContext, Logger } from '@nestjs/common';
-import { env } from 'process';
 
 export class LoggerUtil {
   private readonly logger: Logger;
@@ -10,11 +9,9 @@ export class LoggerUtil {
     this.logger = new Logger('Data Synchronization');
   }
 
-  private getComponentName(config?: any): string {
+  private getComponentName(config?: LoggerUtilDto): string {
     if (config?.context) {
-      return this.getComponentNameFromContext(
-        config.context as ExecutionContext,
-      );
+      return this.getComponentNameFromContext(config.context);
     } else if (config?.name) {
       return `[${config.name}]`;
     } else if (config?.stack) {
@@ -64,22 +61,22 @@ export class LoggerUtil {
     return `${this.appendAdditionalInfo(this.componentName, additionalParams)} ${message}`;
   }
 
-  log(message: any, additionalParams?: LoggerUtilAdditionalDto): void {
+  log(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.log(this.formatMessage(message, additionalParams));
   }
-  error(message: any, additionalParams?: LoggerUtilAdditionalDto): void {
+  error(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.error(this.formatMessage(message, additionalParams));
   }
-  warn(message: any, additionalParams?: LoggerUtilAdditionalDto): void {
+  warn(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.warn(this.formatMessage(message, additionalParams));
   }
-  debug(message: any, additionalParams?: LoggerUtilAdditionalDto): void {
+  debug(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.debug(this.formatMessage(message, additionalParams));
   }
-  verbose?(message: any, additionalParams?: LoggerUtilAdditionalDto): void {
+  verbose?(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.verbose(this.formatMessage(message, additionalParams));
   }
-  fatal?(message: any, additionalParams?: LoggerUtilAdditionalDto): void {
+  fatal?(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.fatal(this.formatMessage(message, additionalParams));
   }
 }

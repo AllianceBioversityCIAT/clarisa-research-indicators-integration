@@ -31,10 +31,13 @@ export class GlobalExceptions implements ExceptionFilter {
       path: request.url,
     };
 
-    _logger.error((exception as InternalServerErrorException)?.stack, {
-      method: request.method,
-      url: request.url,
-    });
+    _logger.error(
+      (exception as InternalServerErrorException)?.stack ?? 'Unknown stack',
+      {
+        method: request.method,
+        url: request.url,
+      },
+    );
     response.status(status).json(res);
   }
 }
