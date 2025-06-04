@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Set up Java 17 for SonarCloud
+      # Step 1: Set up Java 17 for SonarCloud.
       - name: Set up JDK 17 for SonarCloud analysis
         uses: actions/setup-java@v2
         with:
