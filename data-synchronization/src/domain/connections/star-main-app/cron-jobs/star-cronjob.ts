@@ -12,7 +12,9 @@ export class StarCronJob {
   constructor(private readonly starService: StarService) {}
 
   @Cron(CronExpression.EVERY_8_HOURS)
-  handleCron() {
-    this.starService.cloneAllClarisaEntities();
+  handleCron(): void {
+    this.starService
+      .cloneAllClarisaEntities()
+      .catch((error) => this.logger.error(error));
   }
 }
