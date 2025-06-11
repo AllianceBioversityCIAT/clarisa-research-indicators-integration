@@ -13,5 +13,8 @@ export enum ClarisaPathEnum {
   PARTNER_REQUEST_CREATE = 'api/partner-requests/create',
   CREATE_SECRET = 'api/app-secrets/create',
   VALIDATE_SECRET = 'api/app-secrets/validate',
+  INNOVATION_TYPES = 'api/innovation-types',
+  INNOVATION_CHARACTERISTICS = 'api/innovation-characteristics',
+  INNOVATION_READINESS_LEVELS = 'api/innovation-readiness-levels',
   NONE = 'none',
 }

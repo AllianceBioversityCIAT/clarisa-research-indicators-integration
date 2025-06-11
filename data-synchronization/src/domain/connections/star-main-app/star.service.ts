@@ -27,6 +27,9 @@ import { firstValueFrom } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { ClarisaInstitutionsRepository } from './entities/clarisa-institutions/repositories/clarisa-institution.repository';
 import { isEmpty } from '../../shared/utils/object.utils';
+import { ClarisaInnovationCharacteristic } from './entities/clarisa-innovation-characteristics/clarisa-innovation-characteristic.entity';
+import { ClarisaInnovationReadinessLevel } from './entities/clarisa-innovation-readiness-levels/clarisa-innovation-readiness-level.entity';
+import { ClarisaInnovationType } from './entities/clarisa-innovation-types/clarisa-innovation-type.entity';
 
 @Injectable()
 export class StarService extends BaseApi {
@@ -95,6 +98,21 @@ export class StarService extends BaseApi {
   async cloneAllClarisaEntities(): Promise<void> {
     this.logger.debug('Cloning all entities from Clarisa API');
 
+    await this.base<ClarisaInnovationCharacteristic>(
+      ClarisaPathEnum.INNOVATION_CHARACTERISTICS,
+      ClarisaInnovationCharacteristic,
+    );
+
+    await this.base<ClarisaInnovationReadinessLevel>(
+      ClarisaPathEnum.INNOVATION_READINESS_LEVELS,
+      ClarisaInnovationReadinessLevel,
+    );
+
+    await this.base<ClarisaInnovationType>(
+      ClarisaPathEnum.INNOVATION_TYPES,
+      ClarisaInnovationType,
+    );
+    return;
     await this.base<ClarisaRegion>(ClarisaPathEnum.REGIONS, ClarisaRegion);
 
     await this.base<CreateClarisaCountryDto, ClarisaCountry>(
