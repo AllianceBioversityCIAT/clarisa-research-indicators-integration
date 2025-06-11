@@ -112,7 +112,7 @@ export class StarService extends BaseApi {
       ClarisaPathEnum.INNOVATION_TYPES,
       ClarisaInnovationType,
     );
-    return;
+
     await this.base<ClarisaRegion>(ClarisaPathEnum.REGIONS, ClarisaRegion);
 
     await this.base<CreateClarisaCountryDto, ClarisaCountry>(
