@@ -73,10 +73,10 @@ export class LoggerUtil {
   debug(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.debug(this.formatMessage(message, additionalParams));
   }
-  verbose?(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
+  verbose(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.verbose(this.formatMessage(message, additionalParams));
   }
-  fatal?(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
+  fatal(message: string, additionalParams?: LoggerUtilAdditionalDto): void {
     this.logger.fatal(this.formatMessage(message, additionalParams));
   }
 }
