@@ -11,6 +11,7 @@ import { dataSourceTarget } from './db/mysql/enum/data-source-target.enum';
 import { ResponseInterceptor } from './domain/shared/Interceptors/response.interceptor';
 import { GlobalExceptions } from './domain/shared/error-management/global.exception';
 import { ScheduleModule } from '@nestjs/schedule';
+import { AiccraModule } from './domain/connections/aiccra/aiccra.module';
 
 @Module({
   imports: [
@@ -18,7 +19,11 @@ import { ScheduleModule } from '@nestjs/schedule';
     TypeOrmModule.forRoot(
       <DataSourceOptions>getDataSource(dataSourceTarget.STAR, false),
     ),
+    TypeOrmModule.forRoot(
+      <DataSourceOptions>getDataSource(dataSourceTarget.AICCRA, false),
+    ),
     StarModule,
+    AiccraModule,
     ScheduleModule.forRoot(),
   ],
   controllers: [AppController],

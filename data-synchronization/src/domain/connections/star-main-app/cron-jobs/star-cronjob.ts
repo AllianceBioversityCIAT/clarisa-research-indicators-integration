@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Cron, CronExpression } from '@nestjs/schedule';
+import { Cron } from '@nestjs/schedule';
 import { LoggerUtil } from '../../../shared/utils/logger.util';
 import { StarService } from '../star.service';
 
@@ -11,7 +11,7 @@ export class StarCronJob {
 
   constructor(private readonly starService: StarService) {}
 
-  @Cron(CronExpression.EVERY_8_HOURS)
+  @Cron('0 1,13 * * *')
   handleCron(): void {
     this.starService
       .cloneAllClarisaEntities()

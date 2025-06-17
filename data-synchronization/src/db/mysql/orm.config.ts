@@ -57,6 +57,16 @@ const getConfigForDB = (target: dataSourceTarget) => {
         `${__dirname}/../../domain/connections/star-main-app/entities/**/*.entity{.ts,.js}`,
       ];
       break;
+    case dataSourceTarget.AICCRA:
+      tempConfig.name = 'AICCRA';
+      tempConfig.host = String(env.DS_AICCRA_DB_HOST);
+      tempConfig.database = String(env.DS_AICCRA_DB_NAME);
+      tempConfig.username = String(env.DS_AICCRA_DB_USER);
+      tempConfig.password = String(env.DS_AICCRA_DB_PASSWORD);
+      tempConfig.entities = [
+        `${__dirname}/../../domain/connections/aiccra/entities/**/*.entity{.ts,.js}`,
+      ];
+      break;
     case dataSourceTarget.TEST:
       tempConfig.name = String(env.ARIM_TEST_MYSQL_NAME);
       tempConfig.host = String(env.ARIM_TEST_MYSQL_HOST);
