@@ -30,6 +30,7 @@ import { isEmpty } from '../../shared/utils/object.utils';
 import { ClarisaInnovationCharacteristic } from './entities/clarisa-innovation-characteristics/clarisa-innovation-characteristic.entity';
 import { ClarisaInnovationReadinessLevel } from './entities/clarisa-innovation-readiness-levels/clarisa-innovation-readiness-level.entity';
 import { ClarisaInnovationType } from './entities/clarisa-innovation-types/clarisa-innovation-type.entity';
+import { ClarisaSdg } from './entities/clarisa-sdgs/clarisa-sdg.entity';
 
 @Injectable()
 export class StarService extends BaseApi {
@@ -97,6 +98,8 @@ export class StarService extends BaseApi {
    */
   async cloneAllClarisaEntities(): Promise<void> {
     this.logger.debug('Cloning all entities from Clarisa API');
+
+    await this.base<ClarisaSdg>(ClarisaPathEnum.SDG, ClarisaSdg);
 
     await this.base<ClarisaInnovationCharacteristic>(
       ClarisaPathEnum.INNOVATION_CHARACTERISTICS,
