@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { AuditableEntity } from '../../complements/dtos/auditable.entity';
 
 @Entity('clarisa_sdgs')
