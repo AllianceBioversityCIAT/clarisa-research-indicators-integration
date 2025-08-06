@@ -28,10 +28,10 @@ export class Agresso implements ConnectionInterface {
   private async initializeClient() {
     try {
       this.client = await createClientAsync(
-        env.ARI_AGRESSO_URL + 'abwinterface/DataManagementPort?wsdl',
+        env.DS_ARI_AGRESSO_URL + 'abwinterface/DataManagementPort?wsdl',
       );
-      this.client.addHttpHeader('username', env.ARI_AGRESSO_USER);
-      this.client.addHttpHeader('password', env.ARI_AGRESSO_PASS);
+      this.client.addHttpHeader('username', env.DS_ARI_AGRESSO_USER);
+      this.client.addHttpHeader('password', env.DS_ARI_AGRESSO_PASS);
     } catch (err) {
       this.logger.error(err);
     }
