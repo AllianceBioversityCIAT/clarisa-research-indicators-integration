@@ -1,4 +1,4 @@
-import { AgressoContractStatus } from '../../../shared/enum/agresso-contract.enum';
+import { AgressoContractStatus } from './agresso-contract.enum';
 
 export class AgressoContractWhere {
   public agreement_id: string;
