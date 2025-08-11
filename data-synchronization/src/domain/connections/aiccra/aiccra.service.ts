@@ -235,14 +235,6 @@ export class AiccraService extends BaseApi {
         ),
     );
 
-    res_insti.filter(
-      (obj2) =>
-        !newDataToSave.some(
-          (obj1) =>
-            obj1.loc_element_id === obj2.loc_element_id &&
-            obj1.institution_id === obj2.institution_id,
-        ),
-    );
     const updateOnly = newDataToSave.filter((i) =>
       res_insti.some(
         (aii) =>
