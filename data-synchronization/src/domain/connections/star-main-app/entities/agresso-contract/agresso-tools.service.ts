@@ -16,7 +16,7 @@ export class AgressoToolsService extends BaseControlListSave<Agresso> {
 
   async cloneAllAgressoEntities() {
     const clarisaSdg = await this.dataSource.getRepository(ClarisaSdg).find();
-    this.base<AgressoContractRawDto, AgressoContract>(
+    await this.base<AgressoContractRawDto, AgressoContract>(
       'getAgreementsRM',
       AgressoContract,
       undefined,
