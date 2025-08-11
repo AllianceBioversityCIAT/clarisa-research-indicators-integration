@@ -235,9 +235,7 @@ export class AiccraService extends BaseApi {
         ),
     );
 
-    // filter the data to remove
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const toRemove = res_insti.filter(
+    res_insti.filter(
       (obj2) =>
         !newDataToSave.some(
           (obj1) =>
