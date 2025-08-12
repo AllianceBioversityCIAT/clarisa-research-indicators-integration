@@ -11,7 +11,7 @@ on:
       - dev
       - staging
       - main
-  workflow_dispatch: # Permite ejecución manual
+  workflow_dispatch:
 
 jobs:
   trigger-job:

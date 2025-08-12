@@ -32,6 +32,7 @@ import { ClarisaInnovationReadinessLevel } from './entities/clarisa-innovation-r
 import { ClarisaInnovationType } from './entities/clarisa-innovation-types/clarisa-innovation-type.entity';
 import { ClarisaSdg } from './entities/clarisa-sdgs/clarisa-sdg.entity';
 import { AgressoToolsService } from './entities/agresso-contract/agresso-tools.service';
+import { AgressoToolsDevService } from './entities/agresso-contract/agresso-tools-dev.service';
 
 @Injectable()
 export class StarService extends BaseApi {
@@ -40,6 +41,7 @@ export class StarService extends BaseApi {
     httpService: HttpService,
     private readonly ciRepo: ClarisaInstitutionsRepository,
     private readonly agressoService: AgressoToolsService,
+    private readonly agressoToolsDevService: AgressoToolsDevService,
   ) {
     super(
       httpService,
@@ -166,6 +168,7 @@ export class StarService extends BaseApi {
     );
 
     await this.agressoService.cloneAllAgressoEntities();
+    await this.agressoToolsDevService.cloneAllAgressoEntities();
 
     this.logger.debug('All entities cloned');
   }
