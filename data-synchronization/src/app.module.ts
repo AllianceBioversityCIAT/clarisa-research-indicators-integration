@@ -22,6 +22,9 @@ import { AiccraModule } from './domain/connections/aiccra/aiccra.module';
     TypeOrmModule.forRoot(
       <DataSourceOptions>getDataSource(dataSourceTarget.AICCRA, false),
     ),
+    TypeOrmModule.forRoot(
+      <DataSourceOptions>getDataSource(dataSourceTarget.STAR_PROD, false),
+    ),
     StarModule,
     AiccraModule,
     ScheduleModule.forRoot(),

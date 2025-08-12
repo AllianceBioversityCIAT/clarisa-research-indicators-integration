@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Agresso } from './agresso-tools.connection';
-import { AgressoContract } from '../../entities/agresso-contract/entities/agresso-contract.entity';
-import { AgressoContractRawDto } from '../../entities/agresso-contract/dto/agresso-contract-raw.dto';
+import { AgressoContract } from './entities/agresso-contract.entity';
+import { AgressoContractRawDto } from './dto/agresso-contract-raw.dto';
 import { DataSource, DeepPartial } from 'typeorm';
 import { ClarisaSdg } from '../clarisa-sdgs/clarisa-sdg.entity';
 import { BaseControlListSave } from '../../complements/dtos/base-control-list-save';
@@ -9,9 +9,9 @@ import { AgressoContractMapper } from '../../complements/mappers/agresso-contrac
 import { InjectDataSource } from '@nestjs/typeorm';
 
 @Injectable()
-export class AgressoToolsService extends BaseControlListSave<Agresso> {
-  constructor(@InjectDataSource('STAR_PROD') dataSource: DataSource) {
-    super(dataSource, new Agresso(), new Logger(AgressoToolsService.name));
+export class AgressoToolsDevService extends BaseControlListSave<Agresso> {
+  constructor(@InjectDataSource('STAR') dataSource: DataSource) {
+    super(dataSource, new Agresso(), new Logger(AgressoToolsDevService.name));
   }
 
   async cloneAllAgressoEntities() {

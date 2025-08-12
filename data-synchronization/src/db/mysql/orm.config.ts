@@ -76,6 +76,15 @@ const getConfigForDB = (target: dataSourceTarget) => {
         `${__dirname}/../../domain/connections/entities/**/*.entity{.ts,.js}`,
       ];
       break;
+    case dataSourceTarget.STAR_PROD:
+      tempConfig.name = 'STAR_PROD';
+      tempConfig.host = String(env.DS_STAR_PROD_DB_HOST);
+      tempConfig.database = String(env.DS_STAR_PROD_DB_NAME);
+      tempConfig.username = String(env.DS_STAR_PROD_DB_USER);
+      tempConfig.password = String(env.DS_STAR_PROD_DB_PASSWORD);
+      tempConfig.entities = [
+        `${__dirname}/../../domain/connections/star-main-app/entities/**/*.entity{.ts,.js}`,
+      ];
   }
 
   return tempConfig;
