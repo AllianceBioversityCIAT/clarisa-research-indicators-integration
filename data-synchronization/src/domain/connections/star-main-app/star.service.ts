@@ -31,7 +31,6 @@ import { ClarisaInnovationCharacteristic } from './entities/clarisa-innovation-c
 import { ClarisaInnovationReadinessLevel } from './entities/clarisa-innovation-readiness-levels/clarisa-innovation-readiness-level.entity';
 import { ClarisaInnovationType } from './entities/clarisa-innovation-types/clarisa-innovation-type.entity';
 import { ClarisaSdg } from './entities/clarisa-sdgs/clarisa-sdg.entity';
-import { AgressoToolsService } from './entities/agresso-contract/agresso-tools.service';
 
 @Injectable()
 export class StarService extends BaseApi {
@@ -39,7 +38,6 @@ export class StarService extends BaseApi {
     @InjectDataSource('STAR') private dataSource: DataSource,
     httpService: HttpService,
     private readonly ciRepo: ClarisaInstitutionsRepository,
-    private readonly agressoService: AgressoToolsService,
   ) {
     super(
       httpService,
@@ -164,8 +162,6 @@ export class StarService extends BaseApi {
       ClarisaPathEnum.GEO_SCOPES,
       ClarisaGeoScope,
     );
-
-    await this.agressoService.cloneAllAgressoEntities();
 
     this.logger.debug('All entities cloned');
   }
