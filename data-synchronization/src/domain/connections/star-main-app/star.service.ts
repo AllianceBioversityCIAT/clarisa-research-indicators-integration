@@ -167,7 +167,9 @@ export class StarService extends BaseApi {
       ClarisaGeoScope,
     );
 
+    this.logger.debug('Started cloning Agresso entities from STAR Prod');
     await this.agressoService.cloneAllAgressoEntities();
+    this.logger.debug('Started cloning Agresso entities from STAR Dev');
     await this.agressoToolsDevService.cloneAllAgressoEntities();
 
     this.logger.debug('All entities cloned');
