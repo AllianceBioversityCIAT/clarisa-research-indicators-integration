@@ -10,11 +10,13 @@ export class Agresso implements ConnectionInterface {
   private readonly logger: LoggerUtil = new LoggerUtil({
     name: Agresso.name,
   });
+  private readonly isProduction: boolean;
 
-  constructor() {
+  constructor(isProduction = false) {
     this.xmlToJson = new XMLParser();
     this.xmlBuilder = new XMLBuilder();
     this.initializeClient();
+    this.isProduction = isProduction;
   }
 
   xmlToObject<T>(data: string): Partial<T> {
@@ -27,11 +29,24 @@ export class Agresso implements ConnectionInterface {
 
   private async initializeClient() {
     try {
+      const baseUrl = this.isProduction
+        ? env.DS_ARI_AGRESSO_URL
+        : env.DS_ARI_AGRESSO_URL_DEV;
       this.client = await createClientAsync(
-        env.DS_ARI_AGRESSO_URL + 'abwinterface/DataManagementPort?wsdl',
+        baseUrl + 'abwinterface/DataManagementPort?wsdl',
       );
-      this.client.addHttpHeader('username', env.DS_ARI_AGRESSO_USER);
-      this.client.addHttpHeader('password', env.DS_ARI_AGRESSO_PASS);
+      this.client.addHttpHeader(
+        'username',
+        this.isProduction
+          ? env.DS_ARI_AGRESSO_USER
+          : env.DS_ARI_AGRESSO_USER_DEV,
+      );
+      this.client.addHttpHeader(
+        'password',
+        this.isProduction
+          ? env.DS_ARI_AGRESSO_PASS
+          : env.DS_ARI_AGRESSO_PASS_DEV,
+      );
     } catch (err) {
       this.logger.error(err);
     }

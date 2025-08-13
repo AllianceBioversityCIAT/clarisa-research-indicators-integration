@@ -11,7 +11,7 @@ import { InjectDataSource } from '@nestjs/typeorm';
 @Injectable()
 export class AgressoToolsService extends BaseControlListSave<Agresso> {
   constructor(@InjectDataSource('STAR_PROD') dataSource: DataSource) {
-    super(dataSource, new Agresso(), new Logger(AgressoToolsService.name));
+    super(dataSource, new Agresso(true), new Logger(AgressoToolsService.name));
   }
 
   async cloneAllAgressoEntities() {
