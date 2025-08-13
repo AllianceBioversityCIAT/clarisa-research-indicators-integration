@@ -27,7 +27,7 @@ export abstract class BaseControlListSave<
       this._logger.error(err);
       return [];
     });
-
+    this._logger.log(`Data fetched for ${entity.name}: ${data.length} items`);
     let modifyData: DeepPartial<Y>[];
     if (iterator) {
       modifyData = iterator(data);
@@ -36,6 +36,8 @@ export abstract class BaseControlListSave<
     } else {
       modifyData = data as unknown as Y[];
     }
+
+    this._logger.log(`Saving data for ${entity.name}`);
     const saveData: DeepPartial<Y>[] = await this.dataSource
       .getRepository(entity)
       .save(modifyData)
