@@ -16,6 +16,7 @@ export enum ClarisaPathEnum {
   INNOVATION_TYPES = 'api/innovation-types',
   INNOVATION_CHARACTERISTICS = 'api/innovation-characteristics',
   INNOVATION_READINESS_LEVELS = 'api/innovation-readiness-levels',
+  INITIATIVE = 'api/initiatives',
   NONE = 'none',
   SDG = 'api/sdgs',
 }
