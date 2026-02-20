@@ -58,6 +58,7 @@ export class Agresso implements ConnectionInterface {
     }
     const [result] = await this.client[`${methodName}Async`](args);
     const { return: data } = result;
+    data.forEach((item: any) => { console.log('Is Prod', this.isProduction, JSON.stringify(item)) });
     return data;
   }
 }
