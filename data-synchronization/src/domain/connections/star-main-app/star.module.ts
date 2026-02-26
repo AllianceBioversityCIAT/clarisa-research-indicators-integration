@@ -6,6 +6,7 @@ import { StarService } from './star.service';
 import { StarCronJob } from './cron-jobs/star-cronjob';
 import { AgressoToolsService } from './entities/agresso-contract/agresso-tools.service';
 import { AgressoToolsDevService } from './entities/agresso-contract/agresso-tools-dev.service';
+import { AgressoStaffToolsService } from './entities/agresso-contract/agresso-staff-tools.service';
 
 @Module({
   imports: [HttpModule],
@@ -16,6 +17,7 @@ import { AgressoToolsDevService } from './entities/agresso-contract/agresso-tool
     StarCronJob,
     AgressoToolsService,
     AgressoToolsDevService,
+    AgressoStaffToolsService,
   ],
   exports: [
     StarService,
@@ -23,6 +25,7 @@ import { AgressoToolsDevService } from './entities/agresso-contract/agresso-tool
     StarCronJob,
     AgressoToolsService,
     AgressoToolsDevService,
+    AgressoStaffToolsService,
   ],
 })
 export class StarModule {}
