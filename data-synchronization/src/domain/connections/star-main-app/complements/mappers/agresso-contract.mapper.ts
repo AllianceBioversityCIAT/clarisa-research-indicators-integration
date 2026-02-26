@@ -23,6 +23,9 @@ export const AgressoContractMapper = (
   );
   delete tempData.sustainableDevelopmentGoals;
 
-  const mapperData: AgressoContract = { ...tempData, sdgs: sdgObjectList };
+  const mapperData: AgressoContract = {
+    ...tempData,
+    sdgs: sdgObjectList,
+  } as AgressoContract;
   return mapperData;
 };
