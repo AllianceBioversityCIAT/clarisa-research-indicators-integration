@@ -29,7 +29,7 @@ export class AgressoStaffToolsService extends BaseControlListSave<AgressoToolsHt
   private async findNumberOfPages(size: number) {
     const totalPages = await this.connection
       .getRaw<ResponseAgressoStaffDto<unknown>>(this.query(1, size))
-      .then(({ totalPages }) => totalPages);
+      .then(({ page: { totalPages } }) => totalPages);
     return totalPages;
   }
 
