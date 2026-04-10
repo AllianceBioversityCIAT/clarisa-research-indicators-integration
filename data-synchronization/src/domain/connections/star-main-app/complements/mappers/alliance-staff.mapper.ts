@@ -12,5 +12,6 @@ export const allianceStaffMapper = (
     last_name: data.lastName,
     center: data.center,
     status: data.status,
+    position: data.position,
   };
 };

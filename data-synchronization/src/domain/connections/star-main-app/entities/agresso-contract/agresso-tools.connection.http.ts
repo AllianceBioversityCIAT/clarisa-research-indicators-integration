@@ -5,16 +5,33 @@ import { BadRequestException } from '@nestjs/common';
 import { ConnectionInterface } from './agresso-tools.connection';
 
 export class AgressoToolsHttp implements ConnectionInterface {
-  private readonly agressoHost: string = env.DS_ARI_AGRESSO_URL || '';
-  constructor(private readonly http: HttpService) {}
+  private readonly agressoHost: string;
+  private readonly isProduction: boolean;
+  constructor(
+    private readonly http: HttpService,
+    isProduction = false,
+  ) {
+    this.isProduction = isProduction;
+    this.agressoHost =
+      (this.isProduction
+        ? env.DS_ARI_AGRESSO_URL
+        : env.DS_ARI_AGRESSO_URL_DEV_HTTP) || '';
+  }
 
   private async getToken(): Promise<string> {
     return firstValueFrom(
       this.http
-        .post<{ accessToken: string }>(this.agressoHost + 'Auth/api/token', {
-          username: env.DS_ARI_AGRESSO_STAFF_USER,
-          password: env.DS_ARI_AGRESSO_STAFF_PASS,
-        })
+        .post<{ accessToken: string }>(
+          this.agressoHost + 'erp-employment-api/api/v1/auth/login',
+          {
+            username: this.isProduction
+              ? env.DS_ARI_AGRESSO_STAFF_USER
+              : env.DS_ARI_AGRESSO_STAFF_USER_DEV,
+            password: this.isProduction
+              ? env.DS_ARI_AGRESSO_STAFF_PASS
+              : env.DS_ARI_AGRESSO_STAFF_PASS_DEV,
+          },
+        )
         .pipe(
           map(({ data }) => {
             return data.accessToken;

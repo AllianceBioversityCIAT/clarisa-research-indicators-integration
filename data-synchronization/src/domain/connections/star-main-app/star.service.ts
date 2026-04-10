@@ -35,6 +35,7 @@ import { AgressoToolsService } from './entities/agresso-contract/agresso-tools.s
 import { AgressoToolsDevService } from './entities/agresso-contract/agresso-tools-dev.service';
 import { ClarisaInitiative } from './entities/clarisa-initiatives/clarisa-initiative.entity';
 import { AgressoStaffToolsService } from './entities/agresso-contract/agresso-staff-tools.service';
+import { AgressoStaffToolsDevService } from './entities/agresso-contract/agresso-staff-tools-dev.service';
 
 @Injectable()
 export class StarService extends BaseApi {
@@ -45,6 +46,7 @@ export class StarService extends BaseApi {
     private readonly agressoService: AgressoToolsService,
     private readonly agressoToolsDevService: AgressoToolsDevService,
     private readonly agressoStaffToolsService: AgressoStaffToolsService,
+    private readonly agressoStaffToolsDevService: AgressoStaffToolsDevService,
   ) {
     super(
       httpService,
@@ -180,6 +182,7 @@ export class StarService extends BaseApi {
     await this.agressoStaffToolsService.cloneAllAgressoStaff();
     this.logger.debug('Started cloning Agresso entities from STAR Dev');
     await this.agressoToolsDevService.cloneAllAgressoEntities();
+    await this.agressoStaffToolsDevService.cloneAllAgressoStaff();
 
     this.logger.debug('All entities cloned');
   }

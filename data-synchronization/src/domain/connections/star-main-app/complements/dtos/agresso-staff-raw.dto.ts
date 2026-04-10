@@ -5,4 +5,5 @@ export class AgressoStaffRawDto {
   public email: string;
   public center: string;
   public status: string;
+  public position: string;
 }

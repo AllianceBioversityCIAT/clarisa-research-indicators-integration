@@ -38,4 +38,10 @@ export class AllianceUserStaff extends AuditableEntity {
     nullable: true,
   })
   center?: string;
+
+  @Column('text', {
+    name: 'position',
+    nullable: true,
+  })
+  position?: string;
 }
