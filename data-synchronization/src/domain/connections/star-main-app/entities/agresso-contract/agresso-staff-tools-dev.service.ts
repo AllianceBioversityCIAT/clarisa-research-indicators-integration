@@ -10,15 +10,15 @@ import { ResponseAgressoStaffDto } from '../../complements/dtos/response-agresso
 import { InjectDataSource } from '@nestjs/typeorm';
 
 @Injectable()
-export class AgressoStaffToolsService extends BaseControlListSave<AgressoToolsHttp> {
+export class AgressoStaffToolsDevService extends BaseControlListSave<AgressoToolsHttp> {
   constructor(
-    @InjectDataSource('STAR_PROD') dataSource: DataSource,
+    @InjectDataSource('STAR') dataSource: DataSource,
     http: HttpService,
   ) {
     super(
       dataSource,
-      new AgressoToolsHttp(http, true),
-      new Logger(AgressoStaffToolsService.name),
+      new AgressoToolsHttp(http, false),
+      new Logger(AgressoStaffToolsDevService.name),
     );
   }
 
