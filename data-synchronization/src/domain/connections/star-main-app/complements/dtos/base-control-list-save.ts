@@ -1,5 +1,5 @@
 import { Logger } from '@nestjs/common';
-import { DataSource, DeepPartial } from 'typeorm';
+import { DataSource, DeepPartial, ObjectLiteral } from 'typeorm';
 
 export abstract class BaseControlListSave<
   Connection extends ConnectionInterface,
@@ -18,6 +18,7 @@ export abstract class BaseControlListSave<
     entity: new () => Y,
     mapper?: (data: T) => DeepPartial<Y>,
     iterator?: (data: T[]) => DeepPartial<Y>[],
+    primaryKey?: keyof Y,
   ): Promise<DeepPartial<Y>[]> {
     this._logger.log(`Fetching data from ${entity.name}`);
     const data: T[] = await this.connection.get<T[]>(path).catch((err) => {
@@ -38,13 +39,20 @@ export abstract class BaseControlListSave<
     }
 
     this._logger.log(`Saving data for ${entity.name}`);
-    const saveData: DeepPartial<Y>[] = await this.dataSource
-      .getRepository(entity)
-      .save(modifyData)
-      .then((data) => {
-        this._logger.log(`Data saved for ${entity.name}`);
-        return data;
-      });
+    const saveData: DeepPartial<Y>[] = [];
+    for (const el of modifyData) {
+      await this.dataSource
+        .getRepository(entity)
+        .save(el as unknown as DeepPartial<ObjectLiteral>)
+        .then(() => {
+          if (primaryKey) {
+            this._logger.log(`Element ${el[primaryKey as any]} saved`);
+          }
+          saveData.push(el);
+        });
+    }
+
+    this._logger.log(`Data saved for ${entity.name}`);
 
     return saveData;
   }

@@ -21,6 +21,7 @@ export class AgressoToolsDevService extends BaseControlListSave<Agresso> {
       AgressoContract,
       undefined,
       (data) => this.cleanDuplicates(data, clarisaSdg),
+      'agreement_id',
     );
   }
 
@@ -30,7 +31,7 @@ export class AgressoToolsDevService extends BaseControlListSave<Agresso> {
   ): DeepPartial<AgressoContract>[] {
     const idCount = new Map<string, number>();
     const cleanData: AgressoContractRawDto[] = [];
-    data.forEach((item) => {
+    for (const item of data) {
       const id = item.agreement_id;
       if (idCount.has(id)) {
         idCount.set(id, (idCount.get(id) ?? 0) + 1);
@@ -38,7 +39,7 @@ export class AgressoToolsDevService extends BaseControlListSave<Agresso> {
         idCount.set(id, 1);
         cleanData.push(item);
       }
-    });
+    }
     return cleanData.map((data) => AgressoContractMapper(data, clarisaSdg));
   }
 }

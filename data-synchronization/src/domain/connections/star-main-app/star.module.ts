@@ -31,4 +31,4 @@ import { AgressoStaffToolsDevService } from './entities/agresso-contract/agresso
     AgressoStaffToolsDevService,
   ],
 })
-export class StarModule { }
+export class StarModule {}
