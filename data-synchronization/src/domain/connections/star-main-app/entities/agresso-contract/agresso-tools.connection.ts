@@ -29,24 +29,12 @@ export class Agresso implements ConnectionInterface {
 
   private async initializeClient() {
     try {
-      const baseUrl = this.isProduction
-        ? env.DS_ARI_AGRESSO_URL
-        : env.DS_ARI_AGRESSO_URL_DEV;
+      const baseUrl = env.DS_ARI_AGRESSO_URL;
       this.client = await createClientAsync(
         baseUrl + 'abwinterface/DataManagementPort?wsdl',
       );
-      this.client.addHttpHeader(
-        'username',
-        this.isProduction
-          ? env.DS_ARI_AGRESSO_USER
-          : env.DS_ARI_AGRESSO_USER_DEV,
-      );
-      this.client.addHttpHeader(
-        'password',
-        this.isProduction
-          ? env.DS_ARI_AGRESSO_PASS
-          : env.DS_ARI_AGRESSO_PASS_DEV,
-      );
+      this.client.addHttpHeader('username', env.DS_ARI_AGRESSO_USER);
+      this.client.addHttpHeader('password', env.DS_ARI_AGRESSO_PASS);
     } catch (err) {
       this.logger.error(err);
     }
