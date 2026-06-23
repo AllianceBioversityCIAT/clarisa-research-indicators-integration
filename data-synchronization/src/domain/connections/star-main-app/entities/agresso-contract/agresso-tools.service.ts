@@ -21,6 +21,7 @@ export class AgressoToolsService extends BaseControlListSave<Agresso> {
       AgressoContract,
       undefined,
       (data) => this.cleanDuplicates(data, clarisaSdg),
+      'agreement_id',
     );
   }
 
