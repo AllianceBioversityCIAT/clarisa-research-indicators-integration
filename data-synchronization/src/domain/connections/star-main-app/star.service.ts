@@ -16,9 +16,6 @@ import { ClarisaGeoScope } from './entities/clarisa-geo-scope/clarisa-geo-scope.
 import { subNationalMapper } from './complements/mappers/sub-national.mapper';
 import { ClarisaSubNational } from './entities/clarisa-sub-nationals/clarisa-sub-national.entity';
 import { ClarisaSubNationalRawDto } from './entities/clarisa-sub-nationals/dto/clarisa-sub-national-raw.dto';
-import { leversMappers } from './complements/mappers/levers.mappers';
-import { ClarisaLeversRawDto } from './entities/clarisa-levers/dto/clarisa-levers-raw.dto';
-import { ClarisaLever } from './entities/clarisa-levers/clarisa-lever.entity';
 import { ClarisaInstitutionLocation } from './entities/clarisa-institution-locations/clarisa-institution-location.entity';
 import { institutionMapper } from './complements/mappers/institution.mapper';
 import { ClarisaInstitution } from './entities/clarisa-institutions/clarisa-institution.entity';
@@ -153,12 +150,6 @@ export class StarService extends BaseApi {
       undefined,
       undefined,
       institutionLocation,
-    );
-
-    await this.base<ClarisaLeversRawDto, ClarisaLever>(
-      ClarisaPathEnum.LEVERS,
-      ClarisaLever,
-      (data) => leversMappers(data),
     );
 
     await this.base<ClarisaSubNationalRawDto, ClarisaSubNational>(
