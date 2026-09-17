@@ -172,7 +172,7 @@ export class StarService extends BaseApi {
     await this.agressoService.cloneAllAgressoEntities();
     await this.agressoStaffToolsService.cloneAllAgressoStaff();
     this.logger.debug('Started cloning Agresso entities from STAR Dev');
-    await this.agressoToolsDevService.cloneAllAgressoEntities();
+    //await this.agressoToolsDevService.cloneAllAgressoEntities();
     await this.agressoStaffToolsDevService.cloneAllAgressoStaff();
 
     this.logger.debug('All entities cloned');
